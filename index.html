@@ -1,0 +1,126 @@
+<html lang="en"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>育將點餐系統</title>
+  </head>
+  <body>
+    <h1 class="text-center mt-5">育將點餐系統</h1>
+    <div class="container">
+      <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
+      <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='ok.html'}"></iframe>
+
+      <form target="returnWin" role="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeii6cURgWvc289KSl7wLH7c9qLV1SiinY5Ox2eRfw9nhJ28Q/formResponse" method="post" id="myForm" novalidate="novalidate">
+        <div class="row">         
+          <!--桌號-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>桌號<span class="text-danger">*</span></label>
+              <select name="entry.907544966" id="907544966" value="" class="form-control required" size="1">                
+                <option value="">請選擇桌號</option>
+                <option value="1號桌">1號桌</option>
+                <option value="2號桌">2號桌</option>
+                <option value="3號桌">3號桌</option>
+                <option value="4號桌">4號桌</option>
+                <option value="5號桌">5號桌</option>
+                <option value="6號桌">6號桌</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!--雞腿飯-90元-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>雞腿飯-90元<span class="text-danger">(請填數量)</span></label>
+              <input type="number" class="form-control digits" name="entry.741044286" id="741044286" value="0" min="0">
+            </div>
+          </div>          
+          <!--雞排飯-80元-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>雞排飯-80元<span class="text-danger">(請填數量)</span></label>
+              <input type="number" class="form-control" name="entry.508570173" id="508570173" value="0" min="0">
+            </div>
+          </div>          
+          <!--排骨飯-70元-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>排骨飯-70元<span class="text-danger">(請填數量)</span></label>
+              <input type="number" class="form-control" name="entry.1496589028" id="1496589028" value="0" min="0">
+            </div>
+          </div>          
+          <!--招牌飯-60元-->              
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>招牌飯-60元<span class="text-danger">(請填數量)</span></label>
+              <input type="number" class="form-control" name="entry.1776254203" id="1776254203" value="0" min="0">
+            </div>
+          </div> 
+
+        </div> 
+        
+        <div class="row">
+          <div class="col-sm-12">  
+            <!-- 備註 -->
+            <div class="form-group">
+              <label class="control-label">備註</label>
+              <textarea class="form-control" rows="4" id="1294177807" name="entry.1294177807"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center pb-3">
+          <button type="submit" class="btn btn-primary">送出</button>
+        </div>
+      </form>
+      
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <!-- 表單驗證 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $("#myForm").validate({
+          /* 常用檢測屬性
+          required:必填
+          noSpace:空白
+          minlength:最小長度
+          maxlength:最大長度
+          email:信箱格式
+          number:數字格式
+          url:網址格式https://www.minwt.com
+          */
+          onkeyup: function(element, event) {
+            //去除左側空白
+            var value = this.elementValue(element).replace(/^\s+/g, "");
+            $(element).val(value);
+          },
+          messages: {
+            "entry.1663514140": {
+              required:'必填'
+            }
+          },
+          submitHandler: function(form) {
+            form.submit();
+          }  
+
+        });
+      });
+    </script>
+  
+<div id="shadowMeasureIt"></div><div id="divCoordMeasureIt"></div><div id="divRectangleMeasureIt"><div id="divRectangleBGMeasureIt"></div>
+</div>
+</body>
+</html>
