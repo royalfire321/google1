@@ -45,6 +45,33 @@ function FormResponse(){
   //刪除回應問題
   form.deleteAllResponses();
 }  
+
+//試算表變數
+var SpreadsheetAppId = "1GAwAr9gySN9C7623ZAomr5tb415lciX2GqyxLW_moJ4";
+var sheetName = '總表';
+ 
+function appendRow(rowdata){
+   
+  //用id取得試算表
+  var ss = SpreadsheetApp.openById(SpreadsheetAppId);  
+  //用工作表名稱設定工作表
+  var Sheet = ss.getSheetByName(sheetName);
+  //設定工作表 0 1 2 ....
+  //var Sheet = ss.getSheets()[0];//第1個工作表
+   
+  //插入第2行空白
+  var row = 2;
+  Sheet.insertRowBefore(row);
+  //        
+   
+  //寫入記錄
+  //時間戳記	桌號	雞腿飯-90元	雞排飯-80元	排骨飯-70元	招牌飯-60元	備註	合計
+  var data = [rowdata['時間戳記'],rowdata['桌號'],rowdata['雞腿飯-90元'],rowdata['雞排飯-80元'],rowdata['排骨飯-70元'],rowdata['招牌飯-60元'],rowdata['備註'],rowdata['合計']];
+   
+  data.forEach(function(item,index){
+    Sheet.getRange(row, index+1).setValue(item);
+  });
+}
  
 //填入Line Notify 權杖
 var lineToken = "lineToken";  
@@ -65,3 +92,5 @@ function sendToLine(rowdata){
  
   UrlFetchApp.fetch("https://notify-api.line.me/api/notify",options);
 }
+
+document.getElementsByClassName("title").in

@@ -12,6 +12,15 @@
         .error{
             color: red;
         }
+        .form-group img{
+          width:255px;
+          height:200px;
+        }
+        h1{
+          color: brown;
+          font-family: cursive;
+        }
+        
     </style>
 
     <title>育將點餐系統</title>
@@ -23,10 +32,10 @@
       <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='ok.html'}"></iframe>
 
       <form target="returnWin" role="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeii6cURgWvc289KSl7wLH7c9qLV1SiinY5Ox2eRfw9nhJ28Q/formResponse" method="post" id="myForm" novalidate="novalidate">
-        <div class="row">         
+        <span class="row">         
           <!--桌號-->              
-          <div class="col-sm-3">
-            <div class="form-group">
+          <span class="col-sm-3">
+            <span class="form-group">
               <label>桌號<span class="text-danger">*</span></label>
               <select name="entry.907544966" id="907544966" value="" class="form-control required" size="1">                
                 <option value="">請選擇桌號</option>
@@ -37,36 +46,50 @@
                 <option value="5號桌">5號桌</option>
                 <option value="6號桌">6號桌</option>
               </select>
-            </div>
+            </span>
+          </span>
+        
+            
+
+         <!-- 合計-->
+        <div class="col-sm-3">
+          <div class="form-group">
+              <label>合計</label>
+              <input type="text" class="form-control" name="total" id="total" value="" readonly>
           </div>
-        </div>
-        <div class="row">
+        </div>  
+      </span>    
+      <div class="row">
           <!--雞腿飯-90元-->              
           <div class="col-sm-3">
             <div class="form-group">
-              <label>雞腿飯-90元<span class="text-danger">(請填數量)</span></label>
-              <input type="number" class="form-control digits" name="entry.741044286" id="741044286" value="0" min="0" digits=true>
+              <label><span class="title">雞腿飯-90元</span><span class="text-danger">(請填數量)</span></label>
+              <img src="img/chicken_leg.jpg">
+              <input type="number" class="form-control amount " name="entry.741044286" id="741044286" value="0" min="0" digits=true onchange="calTotal()" >
             </div>
           </div>          
           <!--雞排飯-80元-->              
           <div class="col-sm-3">
             <div class="form-group">
-              <label>雞排飯-80元<span class="text-danger">(請填數量)</span></label>
-              <input type="number" class="form-control" name="entry.508570173" id="508570173" value="0" min="0" digits=true>
+              <label><span class="title">雞排飯-80元</span><span class="text-danger">(請填數量)</span></label>
+              <img src="img/chicken.jpg">
+              <input type="number" class="form-control amount" name="entry.508570173" id="508570173" value="0" min="0" digits=true onchange="calTotal()">
             </div>
           </div>          
           <!--排骨飯-70元-->              
           <div class="col-sm-3">
             <div class="form-group">
-              <label>排骨飯-70元<span class="text-danger">(請填數量)</span></label>
-              <input type="number" class="form-control" name="entry.1496589028" id="1496589028" value="0" min="0" digits=true>
+              <label><span class="title">排骨飯-70元</span><span class="text-danger">(請填數量)</span></label>
+              <img src="img/pork.jpg">
+              <input type="number" class="form-control amount" name="entry.1496589028" id="1496589028" value="0" min="0" digits=true onchange="calTotal()">
             </div>
           </div>          
           <!--招牌飯-60元-->              
           <div class="col-sm-3">
             <div class="form-group">
-              <label>招牌飯-60元<span class="text-danger">(請填數量)</span></label>
-              <input type="number" class="form-control" name="entry.1776254203" id="1776254203" value="0" min="0" digits=true >
+              <label><span class="title">招牌飯-60元</span><span class="text-danger">(請填數量)</span></label>
+              <img src="img/three_treasure.jpg">
+              <input type="number" class="form-control amount" name="entry.1776254203" id="1776254203" value="0" min="0"  digits=true onchange="calTotal()">
             </div>
           </div> 
 
@@ -122,6 +145,10 @@
                         digits:true ,
                         min: 0
                     }
+                    ,
+                    'total' : {//合計
+                        required: true
+                    }
                 },
                 messages: {
                     'entry.907544966' : {
@@ -143,11 +170,40 @@
                         digits:"請填正確數量" ,
                         min: "請填正確數量"
                     }
+                    ,
+                    'total' : {//合計
+                        required: "請點餐"
+                    }
 
                 }
             });
 
         });
+    </script>
+
+    <script>
+      
+      function calTotal(){
+        var titles=document.getElementsByClassName("title");
+        var amounts=document.getElementsByClassName("amount");
+        var total=0;
+        for (var i=0; i<amounts.length; i++){
+          var amount=document.getElementsByClassName("amount")[i].value;
+          var title=document.getElementsByClassName("title")[i].innerText;
+          var subArr=title.split("-");
+          var price=parseInt(subArr[1]);
+          total+=amount*price;
+          console.log(amount);
+        }
+      document.getElementById("total").value=total
+        if (total == 0){
+          document.getElementById("total").value ='';
+        }else{
+          document.getElementById("total").value = total;
+        }
+      }
+      
+      
     </script>
 
     
